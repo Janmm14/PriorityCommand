@@ -23,3 +23,7 @@ waitingTicks: 2
 | ----------- | ----------- |
 | prioritykey | arbitrary string to temporarily identify a priority group |
 | priority    | number which defines the priority, higher number = higher priority |
+
+## Download
+
+https://ci.janmm14.de/job/public~mcjava~prioritycommand/
