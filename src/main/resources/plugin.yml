@@ -1,0 +1,17 @@
+name: ${project.name}
+version: ${project.version}-${env.BUILD_NUMBER}
+description: ${project.description}
+author: ${pluginyml.author}
+main: ${bukkit.pluginyml.main}
+load: STARTUP
+api-version: 1.13
+
+commands:
+  prioritycommand:
+    permission: prioritycommand.command
+    aliases: 
+      - pc
+  prioritycommandcancel:
+    permission: prioritycommand.cancel
+    aliases: 
+      - pcc
