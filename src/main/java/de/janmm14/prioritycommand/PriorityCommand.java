@@ -57,15 +57,14 @@ public class PriorityCommand extends JavaPlugin {
 
     @Override
     public boolean onCommand(CommandSender cs, Command cmd, String alias, String[] args) {
-        String cmdName = cmd.getName();
-        switch (cmdName) {
+        switch (cmd.getName()) {
             case "prioritycommand": {
                 if (!cs.hasPermission("prioritycommand.command")) {
                     cs.sendMessage("§4No permission");
                     return true;
                 }
                 if (args.length < 3) {
-                    cs.sendMessage("Usage: / " + alias + " <prioritykey> <priority> <command...>");
+                    cs.sendMessage("Usage: /" + alias + " <priorityKey> <priority> <command...>");
                     return true;
                 }
                 String prioKey = args[0];
@@ -79,9 +78,9 @@ public class PriorityCommand extends JavaPlugin {
                 }
                 StringBuilder sb = new StringBuilder();
                 for (int i = 2; i < args.length; i++) {
-                    sb.append(args[i]);
+                    sb.append(args[i]).append(' ');
                 }
-                String cmdStr = sb.toString();
+                String cmdStr = sb.substring(0, sb.length() - 1);
 
                 prioMap.compute(prioKey, (s, entry) -> {
                     if (entry == null) {
@@ -105,7 +104,7 @@ public class PriorityCommand extends JavaPlugin {
             }
             case "prioritycommandcancel": {
                 if (args.length != 1) {
-                    cs.sendMessage("Usage: /" + alias + " <prioKey>");
+                    cs.sendMessage("Usage: /" + alias + " <priorityKey>");
                     return true;
                 }
                 Entry remove = prioMap.remove(args[0]);
@@ -114,7 +113,7 @@ public class PriorityCommand extends JavaPlugin {
                     return true;
                 }
                 remove.task.cancel();
-                cs.sendMessage("Commands on priority key " + args[0] + " canceled");
+                cs.sendMessage("Command on priority key " + args[0] + " canceled");
                 return true;
             }
             default:
